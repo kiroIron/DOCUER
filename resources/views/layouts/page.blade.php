@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+        @stack('css')
 		<title>Doccure</title>
 		
 		<!-- Favicons -->
@@ -24,15 +24,6 @@
 		<!-- Fontawesome CSS -->
 		<link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/fontawesome.min.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/all.min.css')}}">
-
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
-		
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css')}}">
-		
-		<link rel="stylesheet" href="{{asset('assets/plugins/dropzone/dropzone.min.css')}}">
-		
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- Scripts -->
@@ -81,9 +72,10 @@
 					
 					</ul>
 				</nav>
-        <main class="py-4">
+				<div class="main-wrapper">
+
             @yield('content')
-        </main>
+        
     </div>
     <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
 		
@@ -100,8 +92,10 @@
 		<!-- Circle Progress JS -->
 		<script src="{{asset('assets/js/circle-progress.min.js')}}"></script>
 
-		<!-- Custom JS --><script src="{{asset('assets/js/profile-settings.js')}}"></script>
+		<!-- Custom JS -->
+		<script src="{{asset('assets/js/profile-settings.js')}}"></script>
 
 		<script src="{{asset('assets/js/script.js')}}"></script>
+		@stack('js')
 </body>
 </html>

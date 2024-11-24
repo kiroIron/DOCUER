@@ -1,4 +1,14 @@
 	@extends('layouts.page')
+	@push('css')
+			<!-- Select2 CSS -->
+			<link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
+		
+			<!-- Bootstrap CSS -->
+			<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css')}}">
+			
+			<link rel="stylesheet" href="{{asset('assets/plugins/dropzone/dropzone.min.css')}}">
+	@endpush
+
     @section('content')
     <!-- Breadcrumb -->
     <div class="breadcrumb-bar">
@@ -30,13 +40,13 @@
 								<div class="widget-profile pro-widget-content">
 									<div class="profile-info-widget">
 										<a href="#" class="booking-doc-img">
-											<img src="{{Auth::guard('doctor')->user()->image}}" alt="User Image">
+											<img src="{{Auth::guard('doctors')->user()->image}}" alt="User Image">
 										</a>
 										<div class="profile-det-info">
-											<h3>{{Auth::guard('doctor')->user()->name}}</h3>
+											<h3>{{Auth::guard('doctors')->user()->name}}</h3>
 											
 											<div class="patient-details">
-												<h5 class="mb-0">{{Auth::guard('doctor')->user()->special}}</h5>
+												<h5 class="mb-0">{{Auth::guard('doctors')->user()->special}}</h5>
 											</div>
 										</div>
 									</div>
@@ -59,14 +69,18 @@
 											
 										
 											<li>
-												<a href="{{route('profile')}}">
+												<a href="{{route('logout')}}" onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
 													<i class="fas fa-user-cog"></i>
 													<span>Profile Settings</span>
 												</a>
+												<form id="logout-form" action="{{route('logout')}}" method="post" class="d-none">
+													@csrf
+												</form>
 											</li>
 											
 											<li>
-												<a href="">
+												<a href="{{route('doctorlogout')}}">
 													<i class="fas fa-sign-out-alt"></i>
 													<span>Logout</span>
 												</a>
@@ -81,7 +95,7 @@
                         <div class="col-md-7 col-lg-8 col-xl-9">
 							<form action="{{route('doctor.update',$doctor->id)}}" method="post" enctype="multipart/form-data">						
 								<!-- Basic Information -->
-                                 @crf
+                                 @csrf
                                  @method('PUT')
 								<div class="card">
 									<div class="card-body">
@@ -115,21 +129,21 @@
 													<input name="email" value="{{$doctor->email}}" type="email" class="form-control" readonly>
 												</div>
 											</div>
-											<div class="col-md-12">
+											<div class="col-md-6">
 												<div class="form-group">
 													<label>special <span class="text-danger"></span></label>
 													<input name="special" value="{{$doctor->special}}" type="text" class="form-control">
 												</div>
 											</div>
 											
-											</div>
-											<div class="col-md-12">
+											
+											<div class="col-md-6">
 												<div class="form-group">
 													<label class="control-label">Country</label>
 													<input name="location" value="{{$doctor->location}}" type="text" class="form-control">
 												</div>
 											</div>
-											
+											</div>
 										</div>
 									</div>
 								</div>
@@ -176,16 +190,32 @@
 								<div class="submit-section submit-btn-bottom">
 									<button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
 								</div>
-							</form>	
+								
 						</div>
-					</div>
+									</div>
+				</form>
 
-				</div>
 
 					
 			<!-- /Page Content -->
    
 			
-		   
+		   @push('js')
+			   <!-- Sticky Sidebar JS -->
+			   <script src="{{asset('assets/plugins/theia-sticky-sidebar/ResizeSensor.js')}}"></script>
+			   <script src="{{asset('assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js')}}"></script>
+			   
+			   <!-- Select2 JS -->
+			   <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+			   
+			   <!-- Dropzone JS -->
+			   <script src="{{asset('assets/plugins/dropzone/dropzone.min.js')}}"></script>
+			   
+			   <!-- Bootstrap Tagsinput JS -->
+			   <script src="{{asset('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js')}}"></script>
+			   
+			   <!-- Profile Settings JS -->
+			   <script src="{{asset('assets/js/profile-settings.js')}}"></script>
+		   @endpush
 		
                         @endsection

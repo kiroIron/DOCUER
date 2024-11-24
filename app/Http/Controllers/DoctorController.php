@@ -76,11 +76,11 @@ class DoctorController extends Controller
         if ($request->hasFile('image')){
             $image = $request->file('image');
             $imageName =uniqid().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('image'),$imageName);
-            $input['image']= asset('images/').$imageName;
+            $image->move(public_path('images'),$imageName);
+            $input['image'] = asset('images/'.$imageName);
         }
-        $doctor->update($image);
-        return redirect()->route('doctor.doctor-sitting')->with('success','Doctor profile update successfully');
+        $doctor->update($input);
+        return redirect()->route('doctorprofile')->with('success','Doctor profile update successfully');
     }
 
     /**
@@ -119,7 +119,16 @@ class DoctorController extends Controller
         return redirect()->route('doctorlogin')->with('success','Doctor registered successfully');
     }
     function profile(){
-        $doctor =Auth::guard('doctor')->user();
-    return view('doctor.doctor-setting', compact("doctor"));
+        $doctor = Auth::guard('doctors')->user();
+    return view('doctor.doctor-settings', compact("doctor"));
     }
+    function showdoctorprofle($id){
+$doctor =Doctor::find($id);
+return view('doctor.singledoctor',compact('doctor'));
+    }
+    function logout(){
+        Auth::guard('doctors')->logout();
+        return redirect()->route('/');
+    }
+
 }

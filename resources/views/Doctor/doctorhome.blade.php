@@ -67,10 +67,14 @@
 											</li>
 											
 											<li>
-												<a href="">
+												<a href="{{route('logout')}}" onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
 													<i class="fas fa-sign-out-alt"></i>
 													<span>Logout</span>
 												</a>
+												<form id="logout-form" action="{{route('logout')}}" method="post" class="d-none">
+													@csrf
+												</form>
 											</li>
 										</ul>
 									</nav>
@@ -107,8 +111,8 @@
 												<div class="col-md-12 col-lg-6">
 													<div class="dash-widget">
 														<div class="circle-bar circle-bar3">
-															<div class="circle-graph3" data-percent="50">
-																<img src="assets/img/icon-03.png" class="img-fluid" alt="Patient">
+															<div class="circle-graph3" data-percent="50"> 
+																<img src="{{asset('assets/img/icon-03.png')}}" class="img-fluid" alt="Patient">
 															</div>
 														</div>
 														<div class="dash-widget-info">

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('bloodgroup')->nullable();
             $table->string('location')->nullable();
-            $table->string('image')->default('https://www.google.com/imgres?q=user%20image%20default&imgurl=https%3A%2F%2Fas2.ftcdn.net%2Fv2%2Fjpg%2F03%2F31%2F69%2F91%2F1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg&imgrefurl=http');
+            $table->string('image')->default('https://static.vecteezy.com/system/resources/previews/009/292/244/large_2x/default-avatar-icon-of-social-media-user-vector.jpg');
             $table->string('dateofbirth')->nullable();
             $table->string('gender')->nullable();
             $table->string('mobile')->nullable();

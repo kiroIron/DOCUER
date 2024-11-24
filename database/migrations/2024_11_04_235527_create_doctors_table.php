@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->text('bio')->nullable();
             $table->string('location')->nullable();
-            $table->string('image')->default('');
+            $table->string('image')->default('https://static.vecteezy.com/system/resources/previews/009/292/244/large_2x/default-avatar-icon-of-social-media-user-vector.jpg');
             $table->integer('price')->nullable();
             $table->text('dates')->nullable();
             $table->string('special')->nullable();
